@@ -1,24 +1,32 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import { useState } from "react";
+import listItems from "./data";
+import Header from "./components/Header";
+import AddItem from "./components/AddItem";
+import ListItem from "./components/ListItem";
+import "./components/List.css";
 
 function App() {
+  const [items, setItems] = useState(listItems);
+
+  function handleDeleteItem(itemID) {
+    setItems(items.filter((item) => item._id !== itemID));
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <main className="App">
+      <Header />
+      <ul className="List">
+        {items.map((item) => (
+          <ListItem
+            key={item._id}
+            item={item}
+            onDeleteItem={handleDeleteItem}
+          />
+        ))}
+      </ul>
+      <AddItem />
+    </main>
   );
 }
 
