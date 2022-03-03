@@ -4,7 +4,6 @@ import listItems from "./data";
 import Header from "./components/Header";
 import AddItem from "./components/AddItem";
 import ListItem from "./components/ListItem";
-import "./components/List.css";
 
 function App() {
   const [items, setItems] = useState(listItems);
@@ -16,16 +15,8 @@ function App() {
   return (
     <main className="App">
       <Header />
-      <ul className="List">
-        {items.map((item) => (
-          <ListItem
-            key={item._id}
-            item={item}
-            onDeleteItem={handleDeleteItem}
-          />
-        ))}
-      </ul>
       <AddItem />
+      <ListItem listItems={items} onDeleteItem={handleDeleteItem} />
     </main>
   );
 }

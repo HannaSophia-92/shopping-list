@@ -1,3 +1,9 @@
 .Header {
-  color: steelblue;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: slategray;
+  color: white;
+  margin-top: 0;
+  height: 48px;
 }

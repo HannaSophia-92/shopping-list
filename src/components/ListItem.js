@@ -1,12 +1,18 @@
 import "./List.css";
 
-function ListItem({ item, onDeleteItem }) {
+function ListItem({ listItems, onDeleteItem }) {
   return (
-    <li>
-      <button onClick={() => onDeleteItem(item._id)} className="Button">
-        {item.name.en}
-      </button>
-    </li>
+    <ul className="List">
+      {listItems.map((item) => {
+        return (
+          <li key={item._id} item={item}>
+            <button onClick={() => onDeleteItem(item._id)} className="Button">
+              {item.name.en}
+            </button>
+          </li>
+        );
+      })}
+    </ul>
   );
 }
 
