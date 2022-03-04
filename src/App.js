@@ -1,15 +1,29 @@
 import "./App.css";
-import { useState } from "react";
-import listItems from "./data";
+import { useState, useEffect } from "react";
+
 import Header from "./components/Header";
 import AddItem from "./components/AddItem";
 import ListItem from "./components/ListItem";
 import { nanoid } from "nanoid";
 
-let nextId = 1;
-
 function App() {
-  const [shoppingList, setShoppingList] = useState(listItems);
+  const [shoppingList, setShoppingList] = useState([]);
+  const [apiURL, setApiURL] = useState(
+    "https://fetch-me.vercel.app/api/shopping/items"
+  );
+
+  useEffect(() => {
+    loadItems();
+    async function loadItems() {
+      try {
+        const response = await fetch(apiURL);
+        const data = await response.json();
+        setShoppingList(data.data);
+      } catch (error) {
+        console.log(error);
+      }
+    }
+  }, [apiURL]);
 
   function handleDeleteItem(itemID) {
     setShoppingList(shoppingList.filter((item) => item._id !== itemID));
