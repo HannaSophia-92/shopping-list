@@ -8,15 +8,15 @@ import ListItem from "./components/ListItem";
 let nextId = 1;
 
 function App() {
-  const [items, setItems] = useState(listItems);
+  const [shoppingList, setShoppingList] = useState(listItems);
 
   function handleDeleteItem(itemID) {
-    setItems(items.filter((item) => item._id !== itemID));
+    setShoppingList(shoppingList.filter((item) => item._id !== itemID));
   }
 
   function handleAddItem(title) {
-    setItems([
-      ...items,
+    setShoppingList([
+      ...shoppingList,
       {
         _id: `c2hvcHBpbmcuaXRlbTox${nextId++}`,
         name: { en: title, de: "" },
@@ -28,7 +28,7 @@ function App() {
     <main className="App">
       <Header />
       <AddItem onAddItem={handleAddItem} />
-      <ListItem listItems={items} onDeleteItem={handleDeleteItem} />
+      <ListItem listItems={shoppingList} onDeleteItem={handleDeleteItem} />
     </main>
   );
 }
