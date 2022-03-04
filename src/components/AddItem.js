@@ -1,16 +1,26 @@
 import "./AddItem.css";
+import { useState } from "react";
 
-function AddItem() {
+function AddItem({ onAddItem }) {
+  const [title, setTitle] = useState("");
   return (
     <>
       <input
+        value={title}
+        type="text"
         className="Input"
-        name="items"
-        id="input-items"
         placeholder="Add items"
+        onChange={(event) => setTitle(event.target.value)}
       />
       <label for="input-items"></label>
-      <button>Add</button>
+      <button
+        onClick={() => {
+          setTitle("");
+          onAddItem(title);
+        }}
+      >
+        Add
+      </button>
     </>
   );
 }
