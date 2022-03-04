@@ -4,6 +4,7 @@ import listItems from "./data";
 import Header from "./components/Header";
 import AddItem from "./components/AddItem";
 import ListItem from "./components/ListItem";
+import { nanoid } from "nanoid";
 
 let nextId = 1;
 
@@ -14,12 +15,12 @@ function App() {
     setShoppingList(shoppingList.filter((item) => item._id !== itemID));
   }
 
-  function handleAddItem(title) {
+  function handleAddNewItem(name) {
     setShoppingList([
       ...shoppingList,
       {
-        _id: `c2hvcHBpbmcuaXRlbTox${nextId++}`,
-        name: { en: title, de: "" },
+        _id: nanoid(),
+        name: { en: name, de: "" },
       },
     ]);
   }
@@ -27,7 +28,7 @@ function App() {
   return (
     <main className="App">
       <Header />
-      <AddItem onAddItem={handleAddItem} />
+      <AddItem onAddItem={handleAddNewItem} />
       <ListItem listItems={shoppingList} onDeleteItem={handleDeleteItem} />
     </main>
   );
