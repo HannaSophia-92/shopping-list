@@ -7,12 +7,13 @@ function AddItem({ onAddItem }) {
     <>
       <input
         value={title}
+        id="new-item"
         type="text"
         className="Input"
         placeholder="Add items"
         onChange={(event) => setTitle(event.target.value)}
       />
-      <label for="input-items"></label>
+      <label htmlFor="new-item">What do you want to buy?</label>
       <button
         onClick={() => {
           setTitle("");
