@@ -1,0 +1,15 @@
+.List {
+  display: flex;
+  flex-direction: column;
+  list-style: none;
+  padding: 0;
+  border-radius: 20px;
+}
+
+.Button {
+  background-color: lightgrey;
+  border-radius: 15px;
+  border: none;
+  margin: 5px;
+  padding: 5px;
+}
