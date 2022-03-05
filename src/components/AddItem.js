@@ -6,22 +6,25 @@ function AddItem({ onAddItem }) {
   return (
     <>
       <label htmlFor="new-item">What do you want to buy?</label>
-      <input
-        value={item}
-        id="new-item"
-        type="text"
-        className="Input"
-        placeholder="Add items"
-        onChange={(event) => setItem(event.target.value)}
-      />
-      <button
-        onClick={() => {
-          setItem("");
-          onAddItem(item);
-        }}
-      >
-        Add
-      </button>
+      <div className="SearchBar">
+        <input
+          value={item}
+          id="new-item"
+          type="text"
+          className="Input"
+          placeholder="Add items"
+          onChange={(event) => setItem(event.target.value)}
+        />
+        <button
+          className="Button__Input"
+          onClick={() => {
+            setItem("");
+            onAddItem(item);
+          }}
+        >
+          Add
+        </button>
+      </div>
     </>
   );
 }
