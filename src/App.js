@@ -1,25 +1,44 @@
 import "./App.css";
-import { useState } from "react";
-import listItems from "./data";
+import { useState, useEffect } from "react";
 import Header from "./components/Header";
 import AddItem from "./components/AddItem";
 import ListItem from "./components/ListItem";
-
-let nextId = 1;
+import { nanoid } from "nanoid";
+import SearchItem from "./components/SearchItem";
 
 function App() {
-  const [shoppingList, setShoppingList] = useState(listItems);
+  const [shoppingList, setShoppingList] = useState([]);
+  // const [apiURL, setApiURL] = useState(
+  //   "https://fetch-me.vercel.app/api/shopping/items"
+  // );
+
+  useEffect(() => {
+    loadItems();
+    async function loadItems() {
+      try {
+        const response = await fetch(
+          "https://fetch-me.vercel.app/api/shopping/items"
+        );
+        const data = await response.json();
+        setShoppingList(data.data);
+      } catch (error) {
+        console.log(error);
+      }
+    }
+  }, []);
 
   function handleDeleteItem(itemID) {
     setShoppingList(shoppingList.filter((item) => item._id !== itemID));
   }
 
-  function handleAddItem(title) {
+  function handleAddNewItem(name) {
     setShoppingList([
       ...shoppingList,
       {
-        _id: `c2hvcHBpbmcuaXRlbTox${nextId++}`,
-        name: { en: title, de: "" },
+        _id: nanoid(),
+        _type: "shopping.item",
+        category: { _type: "ref", _ref: "c2hvcHBpbmcuY2F0ZWdvcnk6MA==" },
+        name: { en: name, de: "" },
       },
     ]);
   }
@@ -27,7 +46,8 @@ function App() {
   return (
     <main className="App">
       <Header />
-      <AddItem onAddItem={handleAddItem} />
+      <AddItem onAddItem={handleAddNewItem} />
+      <SearchItem listItems={shoppingList} />
       <ListItem listItems={shoppingList} onDeleteItem={handleDeleteItem} />
     </main>
   );
