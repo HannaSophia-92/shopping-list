@@ -36,16 +36,12 @@ function App() {
       ...shoppingList,
       {
         _id: nanoid(),
+        _type: "shopping.item",
+        category: { _type: "ref", _ref: "c2hvcHBpbmcuY2F0ZWdvcnk6MA==" },
         name: { en: name, de: "" },
       },
     ]);
   }
-
-  // function handleSearchItem(itemName) {
-  //   shoppingList.filter((item) => {
-  //     return item.name.en.match(itemName);
-  //   });
-  // }
 
   return (
     <main className="App">
