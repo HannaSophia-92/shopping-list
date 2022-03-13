@@ -53,7 +53,7 @@ function App() {
 
   function handleFilteredItem(shoppingItem) {
     if (shoppingList.find((item) => item._id === shoppingItem._id)) {
-      alert("You already added the item");
+      alert("You added this item already");
       setSearchTerm("");
     } else {
       setSearchTerm("");
