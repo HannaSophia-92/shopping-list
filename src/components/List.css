@@ -1,15 +1,17 @@
 .List {
   display: flex;
   flex-direction: column;
+  gap: 5px;
   list-style: none;
   padding: 0;
-  border-radius: 20px;
+  width: 30%;
 }
 
-.Button {
-  background-color: lightgrey;
-  border-radius: 15px;
-  border: none;
-  margin: 5px;
+.List__items {
+  background-color: tomato;
+  margin-left: 25px;
+  border-radius: 8px;
   padding: 5px;
+  text-align: center;
+  color: white;
 }

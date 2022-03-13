@@ -1,11 +1,19 @@
-import "./AddItem.css";
+import "./Form.css";
 import { useState } from "react";
 
-function AddItem({ onAddItem }) {
+export default function AddItem({ onAddItem }) {
   const [item, setItem] = useState("");
+
+  function handleSubmit(event) {
+    event.preventDefault();
+    onAddItem(item);
+    setItem("");
+  }
   return (
-    <>
-      <label htmlFor="new-item">What do you want to buy?</label>
+    <form className="Form" onSubmit={handleSubmit}>
+      <label htmlFor="new-item" className="Label">
+        What do you want to buy?
+      </label>
       <div className="SearchBar">
         <input
           value={item}
@@ -15,18 +23,8 @@ function AddItem({ onAddItem }) {
           placeholder="Add items"
           onChange={(event) => setItem(event.target.value)}
         />
-        <button
-          className="Button__Input"
-          onClick={() => {
-            setItem("");
-            onAddItem(item);
-          }}
-        >
-          Add
-        </button>
+        <button className="Button__Input">Add</button>
       </div>
-    </>
+    </form>
   );
 }
-
-export default AddItem;

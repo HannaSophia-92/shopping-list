@@ -1,19 +1,9 @@
 import "./List.css";
 
-function ListItem({ listItems, onDeleteItem }) {
+export default function ListItem({ item, deleteItem }) {
   return (
-    <ul className="List">
-      {listItems.map((item) => {
-        return (
-          <li key={item._id} item={item}>
-            <button onClick={() => onDeleteItem(item._id)} className="Button">
-              {item.name.en}
-            </button>
-          </li>
-        );
-      })}
-    </ul>
+    <li className="List__items" onClick={() => deleteItem(item._id)}>
+      {item.name.en}
+    </li>
   );
 }
-
-export default ListItem;
