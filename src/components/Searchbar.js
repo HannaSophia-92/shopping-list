@@ -1,8 +1,8 @@
-import "./Form.css";
+import './Form.css';
 
 export default function SearchBar({ onSearch, searchTerm }) {
   return (
-    <form className="Form" onSubmit={(event) => event.preventDefault()}>
+    <form className="Form" onSubmit={event => event.preventDefault()}>
       <label htmlFor="search" className="Label">
         Search for articles
       </label>
@@ -13,7 +13,7 @@ export default function SearchBar({ onSearch, searchTerm }) {
           className="Input"
           placeholder="Search items"
           value={searchTerm}
-          onChange={(event) => {
+          onChange={event => {
             onSearch(event.target.value);
           }}
         />

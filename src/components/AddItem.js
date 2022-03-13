@@ -1,13 +1,13 @@
-import "./Form.css";
-import { useState } from "react";
+import './Form.css';
+import { useState } from 'react';
 
 export default function AddItem({ onAddItem }) {
-  const [item, setItem] = useState("");
+  const [item, setItem] = useState('');
 
   function handleSubmit(event) {
     event.preventDefault();
     onAddItem(item);
-    setItem("");
+    setItem('');
   }
   return (
     <form className="Form" onSubmit={handleSubmit}>
@@ -21,7 +21,7 @@ export default function AddItem({ onAddItem }) {
           type="text"
           className="Input"
           placeholder="Add items"
-          onChange={(event) => setItem(event.target.value)}
+          onChange={event => setItem(event.target.value)}
         />
         <button className="Button__Input">Add</button>
       </div>
